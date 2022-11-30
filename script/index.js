@@ -73,7 +73,7 @@ function game(hero) {
         
         else {
             player += 1;
-        }
+        };
 
     }
 
