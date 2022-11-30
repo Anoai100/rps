@@ -1,5 +1,5 @@
 const userChoice = prompt("Hi, your turn");
-const playerSelection = userChoice.toLowerCase();
+let playerSelection = userChoice.toLowerCase();
 
 
 function getComputerChoice () {
@@ -19,7 +19,23 @@ function getComputerChoice () {
     };
 };
 
-const computerSelection = getComputerChoice();
+let computerSelection = getComputerChoice();
 
-console.log(playerSelection);
-console.log(computerSelection);
+function playRound(master, sleeve) {
+
+    if(master[0] === "p" && sleeve[0] === "s") {
+        return(`You lose, ${sleeve} beats ${master}`);
+    }
+
+    else if(master[0] < sleeve[0]) {
+        return(`You win, ${master} beats ${sleeve}`);
+    }
+
+    else {
+        return(`You lose,  ${sleeve} beats ${master}`);
+    }
+};
+
+console.log(playRound(playerSelection, computerSelection));
+
+    
