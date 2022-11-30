@@ -15,7 +15,6 @@ function validate(word) {
 }
 
 const playerSelection = validate(userChoice);
-console.log(playerSelection);
 
 function getComputerChoice () {
 
@@ -35,45 +34,63 @@ function getComputerChoice () {
 };
 
 let computerSelection = getComputerChoice();
-
 function playRound(master, sleeve) {
 
-    const output = "";
-
     if(master[0] === "p" && sleeve[0] === "s") {
-        output.concat(`You lose, ${sleeve} beats ${master}!`);
+        return(`You lose, ${sleeve} beats ${master}!`);
     }
 
     else if(master[0] < sleeve[0]) {
-        output.concat(`You win, ${master} beats ${sleeve}!`);
+        return(`You win, ${master} beats ${sleeve}!`);
     }
 
     else if(master[0] === sleeve[0]) {
-        output.concat(`Draw, you chose the same!`)
+        return(`it's a draw, you chose the same!`);
     }
 
     else {
-        output.concat(`You lose,  ${sleeve} beats ${master}!`);
+        return(`You lose, ${sleeve} beats ${master}!`);
     }
-    return(output);
 };
 
-console.log(playRound(playerSelection, computerSelection));
+const output = playRound(playerSelection, computerSelection);
 
-/*
-function game() {
-    const roundOf = 5;
-    let result = roundOf
-    for(let i = roundOf; i >= 1; i--) {
-        console.log(playRound(playerSelection, computerSelection));
-        const check = playRound(playerSelection, computerSelection);
-        choose();
 
-        if("lose" in check || "Draw" in check) {
-            result -= 1;
+function game(hero) {
+    const bestOfFive = 5;
+    let player = 0;
+    let computer = 0;
+    let tie = 0;
+
+    for(let i = 0; i <= bestOfFive; i++) {
+        if(hero.includes("lose")) {
+            computer += 1;
         }
+
+        else if(hero.includes("draw")) {
+            tie += 1;
+        }
+        
+        else {
+            player += 1;
+        }
+
     }
-    return(result);
-    console.log(result);
+
+    const result = `You:${player}; Draw:${tie}; Computer:${computer}`
+
+    if(player < computer) {
+        return(`(${result}); Oops! Better luck next time.`);
+    }
+
+    else if(player > computer) {
+        return(`(${result}); Congratulations!!! You're the Man!`);
+    }
+
+    else {
+        return(`(${result}); It's a tie, dare to go again`);
+    }
 };
-*/
+
+console.log(game(output));
+
